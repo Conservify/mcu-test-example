@@ -15,4 +15,8 @@ void loop() {
         Serial.println("Tick");
         delay(100);
     }
+
+    while (true) {
+        delay(100);
+    }
 }
