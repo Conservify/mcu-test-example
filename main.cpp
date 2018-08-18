@@ -1,4 +1,15 @@
 #include <Arduino.h>
+#include <AUnitVerbose.h>
+
+test(correct) {
+    auto x = 1;
+    assertEqual(x, 1);
+}
+
+test(incorrect) {
+    auto x = 1;
+    assertNotEqual(x, 1);
+}
 
 void setup() {
     Serial.begin(115200);
@@ -7,16 +18,11 @@ void setup() {
         delay(10);
     }
 
-    Serial.println("Ready");
+    if (false) {
+        aunit::TestRunner::setVerbosity(aunit::Verbosity::kAll);
+    }
 }
 
 void loop() {
-    for (auto i = 0; i < 10; ++i) {
-        Serial.println("Tick");
-        delay(100);
-    }
-
-    while (true) {
-        delay(100);
-    }
+    aunit::TestRunner::run();
 }
