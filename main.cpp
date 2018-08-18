@@ -1,14 +1,25 @@
 #include <Arduino.h>
 #include <AUnitVerbose.h>
 
-test(correct) {
+using namespace aunit;
+
+class SimpleSuite : public TestOnce {
+protected:
+    void setup() override {
+    }
+
+    void teardown() override {
+    }
+};
+
+testF(SimpleSuite, simple) {
     auto x = 1;
     assertEqual(x, 1);
 }
 
-test(incorrect) {
+test(simple) {
     auto x = 1;
-    assertNotEqual(x, 1);
+    assertEqual(x, 1);
 }
 
 void setup() {
@@ -19,10 +30,10 @@ void setup() {
     }
 
     if (false) {
-        aunit::TestRunner::setVerbosity(aunit::Verbosity::kAll);
+        TestRunner::setVerbosity(Verbosity::kAll);
     }
 }
 
 void loop() {
-    aunit::TestRunner::run();
+    TestRunner::run();
 }
