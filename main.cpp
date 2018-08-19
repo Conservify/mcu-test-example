@@ -29,9 +29,7 @@ void setup() {
         delay(10);
     }
 
-    if (false) {
-        TestRunner::setVerbosity(Verbosity::kAll);
-    }
+    TestRunner::setVerbosity(Verbosity::kAll);
 }
 
 void loop() {
