@@ -1,14 +1,16 @@
 project(mcu-test-example)
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.5)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/../arduino-cmake-minimal/cmake/")
+set(CMAKE_MODULE_PATH $ENV{CMAKE_MODULE_PATH})
 
-include(ArduinoMinimal)
+include(Arduino)
 
-set(SOURCE_FILES main.cpp)
+enable_arduino_toolchain()
 
-set(LIBRARIES Wire)
+find_package(AUnit)
 
-include_directories(./)
+add_arduino_library(mcu-test-example main.cpp)
 
-arduino(mcu-test-example "${SOURCE_FILES}" "${LIBRARIES}")
+target_link_libraries(mcu-test-example AUnit)
+
+add_arduino_firmware(mcu-test-example)
